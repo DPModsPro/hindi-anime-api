@@ -40,4 +40,64 @@ The repository owner is not responsible for any misuse or illegal activities per
     - [Alternative Stream Info](#alternative-stream-info)
     - [Downloads](#downloads)
 
+> # Installation
 
+## Local installation
+
+1. Make sure to that you installed `node` on your local machine.
+
+```bash
+#For termux
+pkg install node
+#For linux
+apt install node
+```
+
+2. Run the following code to clone the repository and install all required dependencies
+
+```bash
+#Cloning the repo
+git clone https://github.com/Prathmesh6968/anime-api.git
+
+cd anime-api
+#Istalling all dependencies
+npm i
+
+#Run the Project
+npm start
+```
+
+> # Deployment
+
+#### Render
+
+### Render
+
+Host your own instance of anime-api on Render.
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/Prathmesh6968/anime-api.git)
+
+> # Documentation
+
+### Home
+
+```bash
+GET /api/
+```
+
+### 🔗 Endpoint
+
+```bash
+/api
+```
+
+> #### No parameter required ❌
+
+#### Example of request
+
+```javascript
+import axios from "axios";
+const resp = await axios.get("/api");
+console.log(resp.data);
+```
+```javascript
