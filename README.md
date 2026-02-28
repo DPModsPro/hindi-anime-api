@@ -69,8 +69,6 @@ npm start
 
 > # Deployment
 
-#### Render
-
 ### Render
 
 Host your own instance of anime-api on Render.
