@@ -42,8 +42,8 @@ const toonstreamScraper = async (anime_id, season, episode) => {
 
                 const $$ = cheerio.load(innerHTML);
 
-                const realIframe = $$("iframe").attr("src");
-                const videoSource = $$("video source").attr("src");
+                const realIframe = $$("iframe").attr("src").replace("https://as-cdn21.top/video/","https://as-cdn21.top/player/index.php?data=") + "&do=getVideo";
+                const videoSource = $$("video source").attr("src").replace("https://as-cdn21.top/video/","https://as-cdn21.top/player/index.php?data=") + "&do=getVideo";
 
                 finalResults.push({
                     server: server.server,
