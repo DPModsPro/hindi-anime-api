@@ -1,15 +1,37 @@
-const newAddedEpisode = require("../scrapers/newAddedEpisodes")
+const redis = require("../configs/redis.js");
+const newAddedEpisode = require("../scrapers/newAddedEpisodes");
 
-const newAddedController = async(req,res,next)=>{
-    try{
-        const results = await newAddedEpisode()
+const newAddedController = async (req, res) => {
+    try {
+        const cacheKey = "newadded";
+
+        const cachedData = await redis.get(cacheKey);
+        if (cachedData) {
+            return res.json({
+                success: true,
+                results: cachedData
+            });
+        }
+
+        const results = await newAddedEpisode();
+
+        await redis.set(cacheKey, JSON.stringify(results), {
+            EX: 300   
+        });
+
         res.json({
-            succes:true,
+            success: true,
             message: "Data Found!!",
             results
-        })
-    }catch(err){
-        next(err)
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            success: false,
+            message: "Something went wrong!",
+            error: error.message
+        });
     }
-}
-module.exports = newAddedController
+};
+
+module.exports = newAddedController;

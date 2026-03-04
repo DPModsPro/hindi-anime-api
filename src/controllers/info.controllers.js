@@ -1,29 +1,40 @@
 const infoScraper = require("../scrapers/info")
+const redis = require("../configs/redis")
 
-const infoController = async(req,res,next)=>{
-    try{
-    const anime_id = req.query.id
-    const results = await infoScraper(anime_id)
-    var data
-    if((results.title || results.poster) == ""){
-        data = {
-            success: false,
-            message: "Data Not Found !!",
-            results
-        }
-    }
-    else{
-        data = {
-            success: true,
-            message: "Data Found !!",
-            results
-        }
+const infoController = async (req, res, next) => {
+  try {
+    const id = req.query.id
+
+    if (!id) {
+      return res.status(400).json({
+        success: false,
+        message: "ID is required"
+      })
     }
 
-    res.json(data)
-    }catch(err){
-        next(err)
+    const cachedData = await redis.get(id)
+
+    if (cachedData) {
+      return res.json({
+        success: true,
+        cached: true,
+        data: cachedData
+      })
     }
+    const results = await infoScraper(id)
+    await redis.set(id, JSON.stringify(results), {
+      ex: 10000
+    })
+
+    return res.json({
+      success: true,
+      cached: false,
+      data: results
+    })
+
+  } catch (err) {
+    next(err)
+  }
 }
 
 module.exports = infoController

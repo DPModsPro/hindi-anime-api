@@ -1,0 +1,47 @@
+const infoController = async (req, res, next) => {
+    try {
+        const anime_id = req.query.id
+
+        const results = await infoScraper(anime_id)
+        var data
+        if ((results.title || results.poster) == "") {
+            data = {
+                success: false,
+                message: "Data Not Found !!",
+                results
+            }
+        }
+        else {
+            data = {
+                success: true,
+                message: "Data Found !!",
+                results
+            }
+        }
+
+        res.json(data)
+    } catch (err) {
+        next(err)
+    }
+}
+
+module.exports = infoController
+
+
+
+
+
+
+const id = req.params.id;
+
+const cachedData = await client.get(id);
+
+if (cachedData) {
+    return res.json(JSON.parse(cachedData));
+}
+
+const scrapedData = await scrapeAnime(id);
+
+await client.setEx(id, 3600, JSON.stringify(scrapedData));
+
+res.json(scrapedData);
