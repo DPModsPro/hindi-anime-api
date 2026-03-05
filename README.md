@@ -171,6 +171,247 @@ console.log(resp.data);
 ```
 
 
+### Recently added episodes
+
+```bash
+GET /api/newadded
+```
+
+### 🔗 Endpoint
+```bash
+/api/newadded
+```
+
+#### Parameters Not required ❌️
+
+#### Example of request
+
+```javascript
+import axios from "axios";
+const resp = await axios.get("/api/newadded");
+console.log(resp.data);
+```
+#### Sample request
+
+```javascript
+"success": true,
+  "results": [
+    {
+      "title": "Tokyo Ghoul All",
+      "anime_id": "tokyo-ghoul-all",
+      "season": "3",
+      "episode": "6",
+      "poster": "https://image.tmdb.org/t/p/w185/3TVilpXnkeQuPP2NOA1CPn1iJuo.jpg"
+    },
+    {
+      "title": "Tokyo Ghoul All",
+      "anime_id": "tokyo-ghoul-all",
+      "season": "3",
+      "episode": "5",
+      "poster": "https://image.tmdb.org/t/p/w185/1jQfe4g43EPZW6sA31LdeUJgyPN.jpg"
+    },
+    {
+      "title": "Tokyo Ghoul All",
+      "anime_id": "tokyo-ghoul-all",
+      "season": "3",
+      "episode": "4",
+      "poster": "https://image.tmdb.org/t/p/w185/z6l9AqIwnAiZxwt38Abi09FdTpV.jpg"
+    },
+    {
+      "title": "Jack-of-All-Trades, Party of None",
+      "anime_id": "jack-of-all-trades-party-of-none",
+      "season": "1",
+      "episode": "3",
+      "poster": "https://image.tmdb.org/t/p/w185/vWeeKsVrbywDeW0M5NcRBMgjg5U.jpg"
+    },
+    {
+      "title": "Jack-of-All-Trades, Party of None",
+      "anime_id": "jack-of-all-trades-party-of-none",
+      "season": "1",
+      "episode": "2",
+      "poster": "https://image.tmdb.org/t/p/w185/m6Qxn7kXAxpatBd8YsAXJy0SrDe.jpg"
+    },
+    {
+      "title": "Jack-of-All-Trades, Party of None",
+      "anime_id": "jack-of-all-trades-party-of-none",
+      "season": "1",
+      "episode": "1",
+      "poster": "https://image.tmdb.org/t/p/w185/wROf1bhwICvF3bZI1NpxAwtEDx7.jpg"
+    },
+    {
+      "title": "There Was a Cute Girl in the Hero's Party, So I Tried Confessing to Her",
+      "anime_id": "there-was-a-cute-girl-in-the-heros-party-so-i-tried-confessing-to-her",
+      "season": "1",
+      "episode": "6",
+      "poster": "https://image.tmdb.org/t/p/w185/2zZ1iPHbuzxBcUPxjDOyCTGjPpW.jpg"
+    },
+    {
+      "title": "Fairy Tail",
+      "anime_id": "fairy-tail",
+      "season": "7",
+      "episode": "36",
+      "poster": "https://toonstream.dad/home/wp-content/themes/torofilm/public/img/cnt/noimg-episode.png"
+    },
+    {
+      "title": "One Punch Man",
+      "anime_id": "one-punch-man",
+      "season": "3",
+      "episode": "12",
+      "poster": "https://image.tmdb.org/t/p/w185/3CkzWbeQUXTxfIbNghEOZBfOhPY.jpg"
+    }
+  ]
+}
+```
+
+### Specific Anime Info
+
+```bash
+GET /api/info
+```
+### 🔗 Endpoint
+
+```bash
+/api/info?id={String}
+```
+
+#### Parameters
+
+| Parameter | Parameter-Type | Data-Type | Description | Mandatory ? | Default |
+| :-------: | :------------: | :-------: | :---------: | :---------: | :-----: |
+|   `id`    |    `query`     |  string   |  anime_id   |    yes ✔️   |    --   |
+
+
+#### Example of request
+
+```javascript
+import axios from "axios";
+const resp = await axios.get("/api/info?id=jujutsu-kaisen");
+console.log(resp.data);
+```
+#### Sample responce
+
+```javascript
+{
+  "success": true,
+  "cached": true,
+  "data": {
+    "title": "Jujutsu Kaisen",
+    "poster": "https://image.tmdb.org/t/p/w185/dGvJUOS01OrgDntHXGF04tW6oJ5.jpg",
+    "overview": "Yuji Itadori is a boy with tremendous physical strength, though he lives a completely ordinary high school life. One day, to save a classmate who has been attacked by curses, he eats the finger of Ryomen Sukuna, taking the curse into his own soul. From then on, he shares one body with Ryomen Sukuna. Guided by the most powerful of sorcerers, Satoru Gojo, Itadori is admitted to Tokyo Jujutsu High School, an organization that fights the curses... and thus begins the heroic tale of a boy who became a curse to exorcise a curse, a life from which he could never turn back.",
+    "language": "Hindi – Tamil – Telugu – English – Japanese",
+    "quality": "1080p FHD | 720p HD | 480p",
+    "runningTime": "24min",
+    "genres": [
+      "Action & Adventure",
+      "Animation",
+      "Anime Series",
+      "Crunchyroll",
+      "English",
+      "Hindi",
+      "Japaneses",
+      "Sci-Fi & Fantasy",
+      "Tamil",
+      "Telugu"
+    ],
+    "year": "2020",
+    "seasons": "3",
+    "episodes": "55",
+    "rating": "8.552"
+  }
+}
+```
+
+### Episodes
+
+```bash
+GET /api/episodes
+```
+
+### 🔗 Endpoint
+
+```bash
+/api/episodes?id={String}&season={Number}
+```
+#### Parameters
+
+| Parameter | Parameter-Type | Data-Type | Description | Mandatory ? | Default |
+| :-------: | :------------: | :-------: | :---------: | :---------: | :-----: |
+|   `id`    |    `query`     |  string   |  anime_id   |    yes ✔️   |    --   |
+| `season`  |    `query`     |  Number   | season no.  |     No ✖️   |    1    |
+
+#### Example of request
+```javascript
+import axios from "axios";
+const resp = await axios.get("/api/episodes?id=jujutsu-kaisen&season=3");
+console.log(resp.data);
+```
+
+#### Sample response
+```javascript
+{
+  "success": true,
+  "message": "Redis Found!!",
+  "results": [
+    {
+      "title": "Jujutsu Kaisen",
+      "anime_id": "jujutsu-kaisen",
+      "season": "3",
+      "episode": "1",
+      "poster": "https://image.tmdb.org/t/p/w185/5WmyVAeKXVaoErMLis40CQWoeEt.jpg"
+    },
+    {
+      "title": "Jujutsu Kaisen",
+      "anime_id": "jujutsu-kaisen",
+      "season": "3",
+      "episode": "2",
+      "poster": "https://image.tmdb.org/t/p/w185/w0Zk07fqo2bEKHmIreGk4KvN7ax.jpg"
+    },
+    {
+      "title": "Jujutsu Kaisen 3",
+      "anime_id": "jujutsu-kaisen",
+      "season": "3",
+      "episode": "3",
+      "poster": "https://image.tmdb.org/t/p/w185/buHU8HMXtQIVirrrERclsvNhBkh.jpg"
+    },
+    {
+      "title": "Jujutsu Kaisen",
+      "anime_id": "jujutsu-kaisen",
+      "season": "3",
+      "episode": "4",
+      "poster": "https://image.tmdb.org/t/p/w185/2jKULUXb4YaW2kIH5oOn3C3ZlRx.jpg"
+    },
+    {
+      "title": "Jujutsu Kaisen",
+      "anime_id": "jujutsu-kaisen",
+      "season": "3",
+      "episode": "5",
+      "poster": "https://image.tmdb.org/t/p/w185/w30JXKjZM5Tsp82kKPOikfWF9tH.jpg"
+    },
+    {
+      "title": "Jujutsu Kaisen",
+      "anime_id": "jujutsu-kaisen",
+      "season": "3",
+      "episode": "6",
+      "poster": "https://image.tmdb.org/t/p/w185/lDK4MeNzGn9aklLW8XuNjQwdQye.jpg"
+    },
+    {
+      "title": "Jujutsu Kaisen",
+      "anime_id": "jujutsu-kaisen",
+      "season": "3",
+      "episode": "7",
+      "poster": "https://image.tmdb.org/t/p/w185/cZ10Nnuw9tDXeNpyZ11sqHCLOt2.jpg"
+    },
+    {
+      "title": "Jujutsu Kaisen",
+      "anime_id": "jujutsu-kaisen",
+      "season": "3",
+      "episode": "8",
+      "poster": "https://image.tmdb.org/t/p/w185/z2bTeYHw4DYoAjclHA1lWBZVEV9.jpg"
+    }
+  ]
+}
+```
+
 ### Series 
 
 ```bash
