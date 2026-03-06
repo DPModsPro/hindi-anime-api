@@ -42,6 +42,7 @@ const infiScraper = async(anime_id)=>{
         const poster = "https:" + $(".dfxb img").attr("src")
         const results = {
             title,
+            anime_id,
             poster,
             overview,
             language,

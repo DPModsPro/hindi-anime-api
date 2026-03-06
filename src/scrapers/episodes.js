@@ -8,7 +8,7 @@ async function scrapeEpisodes(id, season=1) {
     
 
     const { data } = await axios.get(url);
-t/episode/${id}-$
+
     const $ = cheerio.load(data);
 
     let episodes = [];
