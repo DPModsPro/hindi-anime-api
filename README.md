@@ -1,8 +1,13 @@
+# AniStream
+> Cheackout [Anistream](https://anistream69.pages.dev/) Powered By [anime-api](https://github.com/Prathmesh6968/anime-api).
+
 # Hindi Anime API
 
 > A simple API for accessing Hindi anime content.
 
 ---
+
+
 
 >## 📌 About
 This API does not host or store any files on its own server.  
