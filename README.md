@@ -342,7 +342,7 @@ GET /api/episodes
 #### Example of request
 ```javascript
 import axios from "axios";
-const resp = await axios.get("/api/episodes?id=jujutsu-kaisen&season=3");
+const resp = await axios.get("/api/episodes?id=roll-over-and-die-i-will-fight-for-an-ordinary-life-with-my-love-and-cursed-sword&season=1");
 console.log(resp.data);
 ```
 
@@ -350,65 +350,43 @@ console.log(resp.data);
 ```javascript
 {
   "success": true,
-  "message": "Redis Found!!",
-  "results": [
-    {
-      "title": "Jujutsu Kaisen",
-      "anime_id": "jujutsu-kaisen",
-      "season": "3",
-      "episode": "1",
-      "poster": "https://image.tmdb.org/t/p/w185/5WmyVAeKXVaoErMLis40CQWoeEt.jpg"
-    },
-    {
-      "title": "Jujutsu Kaisen",
-      "anime_id": "jujutsu-kaisen",
-      "season": "3",
-      "episode": "2",
-      "poster": "https://image.tmdb.org/t/p/w185/w0Zk07fqo2bEKHmIreGk4KvN7ax.jpg"
-    },
-    {
-      "title": "Jujutsu Kaisen 3",
-      "anime_id": "jujutsu-kaisen",
-      "season": "3",
-      "episode": "3",
-      "poster": "https://image.tmdb.org/t/p/w185/buHU8HMXtQIVirrrERclsvNhBkh.jpg"
-    },
-    {
-      "title": "Jujutsu Kaisen",
-      "anime_id": "jujutsu-kaisen",
-      "season": "3",
-      "episode": "4",
-      "poster": "https://image.tmdb.org/t/p/w185/2jKULUXb4YaW2kIH5oOn3C3ZlRx.jpg"
-    },
-    {
-      "title": "Jujutsu Kaisen",
-      "anime_id": "jujutsu-kaisen",
-      "season": "3",
-      "episode": "5",
-      "poster": "https://image.tmdb.org/t/p/w185/w30JXKjZM5Tsp82kKPOikfWF9tH.jpg"
-    },
-    {
-      "title": "Jujutsu Kaisen",
-      "anime_id": "jujutsu-kaisen",
-      "season": "3",
-      "episode": "6",
-      "poster": "https://image.tmdb.org/t/p/w185/lDK4MeNzGn9aklLW8XuNjQwdQye.jpg"
-    },
-    {
-      "title": "Jujutsu Kaisen",
-      "anime_id": "jujutsu-kaisen",
-      "season": "3",
-      "episode": "7",
-      "poster": "https://image.tmdb.org/t/p/w185/cZ10Nnuw9tDXeNpyZ11sqHCLOt2.jpg"
-    },
-    {
-      "title": "Jujutsu Kaisen",
-      "anime_id": "jujutsu-kaisen",
-      "season": "3",
-      "episode": "8",
-      "poster": "https://image.tmdb.org/t/p/w185/z2bTeYHw4DYoAjclHA1lWBZVEV9.jpg"
-    }
-  ]
+  "message": "Data scraped!!",
+  "results": {
+    "anime": "roll-over-and-die-i-will-fight-for-an-ordinary-life-with-my-love-and-cursed-sword",
+    "totalEpisodes": 6,
+    "episodes": [
+      {
+        "season": 1,
+        "episode": 1,
+        "title": "The Beginning and the End"
+      },
+      {
+        "season": 1,
+        "episode": 2,
+        "title": "Coincidence and Fate"
+      },
+      {
+        "season": 1,
+        "episode": 3,
+        "title": "Purity and Corruption"
+      },
+      {
+        "season": 1,
+        "episode": 4,
+        "title": "Darkness and Light"
+      },
+      {
+        "season": 1,
+        "episode": 5,
+        "title": "Cruelty and Camaraderie"
+      },
+      {
+        "season": 1,
+        "episode": 6,
+        "title": "An Ordinary Life"
+      }
+    ]
+  }
 }
 ```
 
