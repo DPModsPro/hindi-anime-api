@@ -1,29 +1,50 @@
-const axios = require("axios")
-const cheerio = require("cheerio")
-const url = require("../utils/Base_V5")
-const header = require("../configs/headers")
+const axios = require("axios");
+const cheerio = require("cheerio");
 
-const episodesScrapers = async(id, Season = 1)=>{
-    const {data} = await axios.get(`${url}/episode/${id}-${Season}x8/`)
-    const $ = await cheerio.load(data)
-    const results = []
-    $("li .episodes").each((_,el)=>{
-        const title = $(el).find(".entry-title").text().replace("x","").replace("1","").replace("2","").replace("3","").replace("4","").replace("5","").replace("6","").replace("7","").replace("8","").replace("9","").replace("0","").replace(" 1","").trim()
-        const seaOepi = $(el).find(".num-epi").text().trim()
-        const [season,episode] = seaOepi.split("x")
-        const poster = "https:" + $(el).find("img").attr("src")
-        const animeId = $(el).find(".lnk-blk").attr("href")
-        const anime_id = animeId.match(/episode\/(.+)-\d+x\d+/)[1];
-        const time = $(el).find(".time").text()
-        results.push({
-            title,
-            anime_id,
-            season,
-            episode,
-            poster
-        })
-    })
-    return results
+async function scrapeEpisodes(slug,season=1){
+
+ try{
+
+ const url = `https://multishows.top/episode/${slug}/${season}-1`;
+
+ const {data} = await axios.get(url);
+
+ const $ = cheerio.load(data);
+
+ let episodes = [];
+
+ $(".mx-3 a").each((i,el)=>{
+
+ const link = $(el).attr("href");
+
+ if(!link.includes(`/${slug}/`)) return;
+
+ const last = link.split("/").pop(); // 1-1
+
+ const [season,episode] = last.split("-");
+
+ const title = $(el).find("div").last().text().trim();
+
+ episodes.push({
+ season:Number(season),
+ episode:Number(episode),
+ title:title
+ });
+
+ });
+
+ return {
+ anime:slug,
+ totalEpisodes:episodes.length,
+ episodes:episodes
+ }
+
+ }catch(err){
+
+ console.log(err.message);
+
+ }
+
 }
 
-module.exports = episodesScrapers
+module.exports = scrapeEpisodes

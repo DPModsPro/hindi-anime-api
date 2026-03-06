@@ -445,6 +445,32 @@ console.log(resp.data);
 Updating soon.......
 ```
 
+### Movies
+
+```bash
+GET /api/movies
+```
+
+### 🔗 Endpoint
+
+```bash
+/api/movies?page={Number}
+```
+
+#### Example of request
+
+```javascript
+import axios from "axios";
+const resp = await axios.get("/api/series?page=13");
+console.log(resp.data);
+```
+
+#### Sample response
+
+```javascript
+
+```
+
 ### Anime Stream Info
 
 ```bash

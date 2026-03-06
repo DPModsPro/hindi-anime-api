@@ -1,30 +1,39 @@
-const axios = require("axios");
-const cheerio = require("cheerio");
+const { default: axios } = require("axios")
+const cheerio = require("cheerio")
+const url = require("../utils/Base_V5.js")
+const Header = require("../configs/headers.js")
 
-const scrapeSeries = async () => {
-    const { data } = await axios.get("https://toonstream.dad/category/anime/?type=movies");
-    const $ = cheerio.load(data);
+const moviesScraper = async (page = 1) => {
+    const { data } = await axios.get(`${url}/movies/page/${page}/`, { headers: Header })
+    const $ = await cheerio.load(data)
+    const anime = []
+    $("li.movies").each((_, el) => {
+        const title = $(el).find("h2.entry-title").text().trim()
+        const anime_id = $(el).find("a.lnk-blk").attr("href").replace("https://toonstream.dad/movies/", "").replace("/", "")
+        const poster = "https:" + $(el).find("img").attr("src")
+        anime.push({ title, anime_id, poster })
+    })
 
-    const results = [];
 
-    $("li.series").each((i, el) => {
-        const title = $(el).find(".entry-title").text().trim();
+    const currentPage = Number($(".current").text().trim())
 
-        let image = $(el).find("img").attr("src").replace("//","https://");
-        if (image && image.startsWith("//")) {
-            image = "https:" + image;
+
+    let totalPages = 1;
+    $(".page-link").each((_, el) => {
+        let pageNum = $(el).text().trim()
+        if (!isNaN(pageNum)) {
+            totalPages = Math.max(totalPages, pageNum)
         }
+    })
 
-        const link = $(el).find("a.lnk-blk").attr("href").replace("https://toonstream.dad/series/","").replace("/","");
+    const results = {
+        currentPage,
+        totalPages,
+        results: anime
+    }
+    return results
 
-        results.push({
-            title,
-            image,
-            link
-        });
-    });
 
-    return results;
-};
+}
 
-scrapeSeries().then(console.log);
+module.exports = moviesScraper
