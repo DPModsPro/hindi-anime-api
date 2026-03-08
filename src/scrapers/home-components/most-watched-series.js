@@ -11,7 +11,7 @@ const Most_seriesScraper = async () => {
             results.push({
                 rank: $(el).find(".chart-number").text().trim(),
                 title: $(el).find(".chart-title").text().trim(),
-                anime_id: $(el).find(".chart-poster").attr("href").replace("https://animesalt.top/series/", "").replace("/", ""),
+                anime_id: $(el).find(".chart-poster").attr("href").replace("https://animesalt.ac/series/", "").replace("/", ""),
                 poster: $(el).find(".chart-poster img").attr("data-src").replace("//", "https://")
             })
         })

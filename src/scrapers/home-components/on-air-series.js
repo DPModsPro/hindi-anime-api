@@ -14,7 +14,7 @@ async function scrapeLatestSeries() {
       const li = $(el).find("li");
       if (!li.hasClass("series")) return; // skip if not a series
 
-      const anime_id = li.find(".lnk-blk").attr("href").replace("https://animesalt.top/series/","").replaceAll("/","");
+      const anime_id = li.find(".lnk-blk").attr("href").replace("https://animesalt.ac/series/","").replaceAll("/","");
       const poster = "https:" + li.find("img").attr("data-src");
       const title = li.find("img").attr("alt").replace("Image ","");
 

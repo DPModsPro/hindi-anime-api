@@ -11,7 +11,7 @@ const Most_filmsScraper = async () => {
             results.push({
                 rank: $(el).find(".chart-number").text().trim(),
                 title: $(el).find(".chart-title").text().trim(),
-                anime_id: $(el).find(".chart-poster").attr("href").replace("https://animesalt.top/movies/", "").replace("/", ""),
+                anime_id: $(el).find(".chart-poster").attr("href").replace("https://animesalt.ac/movies/", "").replace("/", ""),
                 poster: $(el).find(".chart-poster img").attr("data-src").replace("//", "https://")
             })
         })

@@ -10,7 +10,7 @@ const freshdropScraper = async () => {
 
     $(".latest-ep-swiper-slide").each((i, el) => {
       const title = $(el).find(".entry-title").text().trim();
-      const anime_id = $(el).find(".lnk-blk").attr("href").replace("https://animesalt.top/series/","").replace("/","");
+      const anime_id = $(el).find(".lnk-blk").attr("href").replace("https://animesalt.ac/series/","").replace("/","");
       const poster = "https:" + $(el).find("img").attr("data-src");
       const season = $(el).find(".post-ql").text().replace("Season","").trim();
       const episode = $(el).find(".year").text().trim().replace("EP:","");

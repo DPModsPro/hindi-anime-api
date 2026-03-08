@@ -16,7 +16,7 @@ async function scrapeAnimeMovies() {
       // Only Anime Movies
       if (li.hasClass("type-movies") && li.hasClass("category-anime")) {
         const title = li.find("img").attr("alt")?.trim().replace("Image ", "") || null;
-        const anime_id = li.find(".lnk-blk").attr("href").replace("https://animesalt.top/movies/", "").replace("/", "");
+        const anime_id = li.find(".lnk-blk").attr("href").replace("https://animesalt.ac/movies/", "").replace("/", "");
         const poster = li.find("img").attr("data-src")
           ? "https:" + li.find("img").attr("data-src")
           : null;
