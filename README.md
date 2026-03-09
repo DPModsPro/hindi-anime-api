@@ -43,6 +43,7 @@ The repository owner is not responsible for any misuse or illegal activities per
     - [Languages](#languages)
     - [Schedule](#schedule)
     - [Anime Stream Info](#anime-stream-info)
+    - [Movies Details Ans stream](#movies-info)
     - [Alternative Stream Info](#alternative-stream-info)
     - [Downloads](#downloads)
 
@@ -642,4 +643,96 @@ console.log(resp.data);
   ]
 }
 ```
+### Movies Info
 
+```bash
+GET /api/movie
+```
+
+### 🔗 Endpoint
+
+```bash
+/api/movie?id={string}
+```
+#### Example of request
+
+
+```javascript
+import axios from "axios";
+const resp = await axios.get("/api/movie?id=demon-slayer-kimetsu-no-yaiba-infinity-castle");
+console.log(resp.data);
+```
+
+#### Sample response
+
+```javascript
+{
+  "success": true,
+  "message": "data found",
+  "results": {
+    "title": "Demon Slayer: Kimetsu no Yaiba Infinity Castle",
+    "anime_id": "demon-slayer-kimetsu-no-yaiba-infinity-castle",
+    "poster": "https://image.tmdb.org/t/p/w185/aFRDH3P7TX61FVGpaLhKr6QiOC1.jpg",
+    "overview": "The Demon Slayer Corps are drawn into the Infinity Castle, where Tanjiro, Nezuko, and the Hashira face terrifying Upper Rank demons in a desperate fight as the final battle against Muzan Kibutsuji begins.",
+    "languages": [
+      "Language",
+      "Hindi",
+      "Tamil",
+      "Telugu",
+      "Fan Hindi",
+      "Malyalam",
+      "Kannada",
+      "Bengali",
+      "Marathi",
+      "English",
+      "Japaneses",
+      "Korean",
+      "Chinese"
+    ],
+    "run_time": "2h 35m",
+    "genres": [
+      "Action",
+      "Animation",
+      "Anime Movies",
+      "Fantasy",
+      "Hindi",
+      "Japaneses",
+      "Thriller"
+    ],
+    "year": "2025",
+    "rating": "7.4",
+    "stream": [
+      {
+        "iframe": "https://as-cdn21.top/video/c3fdcb6bbc2bd6e8263cceb41c22b64b"
+      },
+      {
+        "iframe": "https://short.icu/7ECVATU2H9"
+      },
+      {
+        "iframe": "https://rubystm.com/e/m7tdz09jdxzf.html"
+      },
+      {
+        "iframe": "https://cloudy.upns.one/#t1abcn"
+      },
+      {
+        "iframe": "https://strmup.to/38d066963fde"
+      },
+      {
+        "iframe": "https://gdmirrorbot.nl/embed/yyjzld1"
+      },
+      {
+        "iframe": "https://gdmirrorbot.nl/embed/qiwe78c"
+      },
+      {
+        "iframe": "https://gdmirrorbot.nl/embed/dx8su67"
+      },
+      {
+        "iframe": "https://emturbovid.com/t/6973a827b7725"
+      },
+      {
+        "iframe": "https://vidmoly.net/embed-tt84iht2acpa.html"
+      }
+    ]
+  }
+}
+```
