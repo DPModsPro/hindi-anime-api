@@ -14,7 +14,7 @@ const moviesStreamController = async(req,res,next)=>{
     }
     const results = await moviesStream(anime_id)
     await redis.set(anime_id,JSON.stringify(results),{
-        ex: 500000
+        ex: 86400
     })
     res.json({
         success: true,
