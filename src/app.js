@@ -41,13 +41,7 @@ app.use("/api", home)
 app.use("/api/search",search)
 app.use("/api/newadded",newAddedEpisode)
 app.use("/api/info",info)
-<<<<<<< HEAD
-app.use("/api/movie",moviesInfo)
-app.use("/api/episodes",episode)
-app.use("/api/movies",movies)
-=======
 app.use("/api/episode",episode)
->>>>>>> recovery-branch
 app.use("/api/series", series)
 app.use("/api/stream", stream)
 
