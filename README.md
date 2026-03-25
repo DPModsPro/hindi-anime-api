@@ -82,6 +82,23 @@ Host your own instance of anime-api on Render.
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/Prathmesh6968/anime-api.git)
 
+### Vercel
+
+1. Fork this repository
+2. Go to [vercel.com](https://vercel.com) and import the repo
+3. Add the following environment variables:
+
+| Variable | Description |
+|----------|-------------|
+| `UPSTASH_REDIS_REST_URL` | Your Upstash Redis REST URL |
+| `UPSTASH_REDIS_REST_TOKEN` | Your Upstash Redis REST Token |
+
+4. Deploy!
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Prathmesh6968/anime-api)
+
+
+
 > # Documentation
 
 ### Home

@@ -8,7 +8,10 @@ process.on("unhandledRejection", (err) => {
     console.error("Unhandled Rejection:", err);
 });
 
+module.exports = app;
 
-app.listen(PORT, () => {
-  console.log("Server running on port", PORT);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log("Server running on port", PORT);
+  });
+}
