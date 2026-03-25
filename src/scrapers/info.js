@@ -1,59 +1,47 @@
 const { default: axios } = require("axios");
-const cheerio = require("cheerio")
-const url = require("../utils/Base_V5")
-const header = require("../configs/headers")
+const cheerio = require("cheerio");
+const url = require("../utils/Base_V5");
+const header = require("../configs/headers");
 
-const infiScraper = async(anime_id)=>{
-    try{
-        const {data} = await axios.get(`${url}/series/${anime_id}/`,{headers:header})
-        const $ = await cheerio.load(data)
-        const title = $(".fg1 .entry-title").text().trim()
+const infiScraper = async (anime_id) => {
+    try {
+        const { data } = await axios.get(`${url}/series/${anime_id}/`, { headers: header });
+        const $ = cheerio.load(data);
+
+        const title = $(".fg1 .entry-title").text().trim();
         const descriptionDiv = $(".description");
 
-        // First <p> = Story
         const overview = descriptionDiv.find("p").first().text().trim();
-
-        // Remaining <p> tags
         const details = descriptionDiv.find("p").slice(1);
 
         let language, quality, runningTime;
 
         details.each((i, el) => {
             const text = $(el).text().trim();
-
-            if (text.includes("Language:")) {
-                language = text.replace("Language:", "").trim();
-            }
-
-            if (text.includes("Quality:")) {
-                quality = text.replace("Quality:", "").trim();
-            }
-
-            if (text.includes("Running time:")) {
-                runningTime = text.replace("Running time:", "").trim();
-            }
+            if (text.includes("Language:")) language = text.replace("Language:", "").trim();
+            if (text.includes("Quality:")) quality = text.replace("Quality:", "").trim();
+            if (text.includes("Running time:")) runningTime = text.replace("Running time:", "").trim();
         });
 
         const genres = $(".genres a").map((i, el) => $(el).text().trim()).get();
-        const year = $(".year").text().trim()
-        const seasons = $(".seasons").text().trim().replace("Seasons","").trim()
-        const episodes = $(".entry-meta .episodes").text().trim().replace("Episodes","").trim()
-        const rating = $(".vote-cn .vote").text().replace("TMDB","").trim()
-        const imgTag = $(el).find("img");
+        const year = $(".year").text().trim();
+        const seasons = $(".seasons").text().trim().replace("Seasons", "").trim();
+        const episodes = $(".entry-meta .episodes").text().trim().replace("Episodes", "").trim();
+        const rating = $(".vote-cn .vote").text().replace("TMDB", "").trim();
 
-            let poster =
-                imgTag.attr("data-src") ||
-                imgTag.attr("data-lazy-src") ||
-                imgTag.attr("data-original") ||
-                imgTag.attr("src");
+        // ✅ Fixed: select the poster container element properly
+        const posterEl = $(".poster img, .thumb img, .entry-thumbnail img, figure img").first();
 
-            if (poster && poster.startsWith("data:image")) {
-                poster = null;
-            }
+        let poster =
+            posterEl.attr("data-src") ||
+            posterEl.attr("data-lazy-src") ||
+            posterEl.attr("data-original") ||
+            posterEl.attr("src") ||
+            null;
 
-            if (poster && poster.startsWith("//")) {
-                poster = "https:" + poster;
-            }
+        if (poster?.startsWith("data:image")) poster = null;
+        if (poster?.startsWith("//")) poster = "https:" + poster;
+
         const results = {
             title,
             anime_id,
@@ -66,12 +54,14 @@ const infiScraper = async(anime_id)=>{
             year,
             seasons,
             episodes,
-            rating
-        }
-        return results
-    }catch(err){
-        console.log(err)
-    }
-}
+            rating,
+        };
 
-module.exports = infiScraper
+        return results;
+
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+module.exports = infiScraper;
