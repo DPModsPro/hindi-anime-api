@@ -10,6 +10,7 @@ const seriesScraper = async (page = 1) => {
     $("#aa-movies li.series").each((_, el) => {
         const title = $(el).find("h2.entry-title").text().trim()
         const anime_id = $(el).find("a.lnk-blk").attr("href").replace("https://toonstream.dad/series/", "").replace("/", "")
+        const imgTag = $(el).find("img");
         let poster =
                 imgTag.attr("data-src") ||
                 imgTag.attr("data-lazy-src") ||

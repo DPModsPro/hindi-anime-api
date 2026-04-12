@@ -4,7 +4,7 @@ const url = require("../utils/Base_V5.js")
 const Header = require("../configs/headers.js")
 
 const searchScraper = async (keyword, page = 1) => {
-    const { data } = await axios.get(`${url}/home/page/${page}/?s=${keyword}`, { headers: Header })
+    const { data } = await axios.get(`${url}?s=${keyword}`, { headers: Header })
     const $ = await cheerio.load(data)
     const anime = []
     $("#aa-movies li.series").each((_, el) => {

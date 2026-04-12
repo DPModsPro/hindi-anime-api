@@ -28,21 +28,9 @@ const infiScraper = async (anime_id) => {
         const seasons = $(".seasons").text().trim().replace("Seasons", "").trim();
         const episodes = $(".entry-meta .episodes").text().trim().replace("Episodes", "").trim();
         const rating = $(".vote-cn .vote").text().replace("TMDB", "").trim();
-
-        // ✅ Fixed: select the poster container element properly
-        const posterEl = $(".poster img, .thumb img, .entry-thumbnail img, figure img").first();
-
-        let poster =
-            posterEl.attr("data-src") ||
-            posterEl.attr("data-lazy-src") ||
-            posterEl.attr("data-original") ||
-            posterEl.attr("src") ||
-            null;
-
-        if (poster?.startsWith("data:image")) poster = null;
-        if (poster?.startsWith("//")) poster = "https:" + poster;
-
-        const results = {
+        let poster = $(".post-thumbnail img").attr("src")
+        poster = "https:" + poster
+        const  results = {
             title,
             anime_id,
             poster,

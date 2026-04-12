@@ -31,15 +31,12 @@ const episodeScraper = async (slug,season=1) => {
       if (image && image.startsWith("//")) {
         image = "https:" + image;
       }
-
-      const link = $(el).find("a.lnk-blk").attr("href");
-
+     
       episodes.push({
         title,
         season,
         episode,
         image,
-        link,
       });
     });
 
