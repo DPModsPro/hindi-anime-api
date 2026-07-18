@@ -1,2 +1,2 @@
-const Base_V5 = "https://toonstream.vip"
+const Base_V5 = "animesalt.ac"
 module.exports = Base_V5
